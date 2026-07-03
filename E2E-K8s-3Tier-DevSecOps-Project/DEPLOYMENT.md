@@ -1345,7 +1345,7 @@ Configure the following tools.
 - Add a new JDK installation
 - Configure it as shown below.
 
-<img src="step10_configure_jdk.png">
+<img src="Images/step10_configure_jdk.png">
 
 ---
 
@@ -1355,7 +1355,7 @@ Configure the following tools.
 - Add a scanner installation
 - Configure it accordingly.
 
-<img src="step10_configure_sqscanner.png">
+<img src="Images/step10_configure_sqscanner.png">
 
 ---
 
@@ -1364,7 +1364,7 @@ Configure the following tools.
 - Search for **NodeJS**
 - Add a NodeJS installation.
 
-<img src="step10_configure_nodejs.png">
+<img src="Images/step10_configure_nodejs.png">
 
 ---
 
@@ -1373,7 +1373,7 @@ Configure the following tools.
 - Search for **Dependency-Check**
 - Configure the installation.
 
-<img src="step10_configure_owasp.png">
+<img src="Images/step10_configure_owasp.png">
 
 ---
 
@@ -1382,7 +1382,7 @@ Configure the following tools.
 - Search for **Docker**
 - Configure the Docker installation.
 
-<img src="step10_configure_docker.png">
+<img src="Images/step10_configure_docker.png">
 
 ---
 
@@ -1402,7 +1402,7 @@ Configure the following:
 
 Click **Apply** and then **Save**.
 
-<img src="step10_configure_sq_path.png">
+<img src="Images/step10_configure_sq_path.png">
 
 ---
 
@@ -1416,15 +1416,15 @@ Navigate to:
 
 - Enter a pipeline name
 
-<img src="step10_jenkins_new_item.png">
+<img src="Images/step10_jenkins_new_item.png">
 
-<img src="step10_jenkins_item_name.png">
+<img src="Images/step10_jenkins_item_name.png">
 
 - Select **Pipeline**
   
 - Click **OK**
 
-<img src="step10_jenkins_item_save.png">
+<img src="Images/step10_jenkins_item_save.png">
 
 Copy the Backend Jenkinsfile into the Pipeline configuration.
 
@@ -1442,7 +1442,7 @@ Build the pipeline.
 
 Once configured correctly, the pipeline should complete successfully.
 
-<img src="step10_jenkins_backend_pipeline_result.png">
+<img src="Images/step10_jenkins_backend_pipeline_result.png">
 
 ---
 
@@ -1457,11 +1457,11 @@ Navigate to:
 - Enter the frontend pipeline name
 - Select **Pipeline**
 
-<img src="step10_jenkins_item_name_frontend.png">
+<img src="Images/step10_jenkins_item_name_frontend.png">
 
 - Click **OK**
 
-<img src="step10_jenkins_item_save_frontend.png">
+<img src="Images/step10_jenkins_item_save_frontend.png">
 
 Copy the Frontend Jenkinsfile into the Pipeline configuration.
 
@@ -1479,7 +1479,7 @@ Run the pipeline.
 
 Once configured correctly, the build should complete successfully.
 
-<img src="step10_jenkins_frontend_pipeline_result.png">
+<img src="Images/step10_jenkins_frontend_pipeline_result.png">
 
 ---
 
@@ -1501,7 +1501,7 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
-<img src="step10_stable_repo.png">
+<img src="Images/step10_stable_repo.png">
 
 ---
 
@@ -1511,7 +1511,7 @@ helm repo update
 helm install prometheus prometheus-community/prometheus
 ```
 
-<img src="step10_install_prometheus.png">
+<img src="Images/step10_install_prometheus.png">
 
 ---
 
@@ -1533,7 +1533,7 @@ kubectl get svc
 
 This displays all services created by Prometheus and Grafana.
 
-<img src="step10_get_prometheus_svc.png">
+<img src="Images/step10_get_prometheus_svc.png">
 
 ---
 
@@ -1545,7 +1545,7 @@ Edit the Prometheus service.
 kubectl edit svc stable-kube-prometheus-sta-prometheus
 ```
 
-<img src="step10_edit_prometheus_svc.png">
+<img src="Images/step10_edit_prometheus_svc.png">
 
 Change:
 
@@ -1561,7 +1561,7 @@ type: LoadBalancer
 
 Save and exit.
 
-<img src="step10_edit_prometheus_svc_lb.png">
+<img src="Images/step10_edit_prometheus_svc_lb.png">
 
 ---
 
@@ -1573,7 +1573,7 @@ Edit the Grafana service.
 kubectl edit svc stable-grafana
 ```
 
-<img src="step10_edit_grafana_svc_cmd.png">
+<img src="Images/step10_edit_grafana_svc_cmd.png">
 
 Change:
 
@@ -1589,7 +1589,7 @@ type: LoadBalancer
 
 Save and exit.
 
-<img src="step10_edit_grafana_svc_lb.png">
+<img src="Images/step10_edit_grafana_svc_lb.png">
 
 ---
 
@@ -1603,11 +1603,11 @@ kubectl get svc
 
 You should now see external Load Balancer DNS names.
 
-<img src="step10_validate_console.png">
+<img src="Images/step10_validate_console.png">
 
 You can also verify them in the AWS Console.
 
-<img src="step10_validate_ui.png">
+<img src="Images/step10_validate_ui.png">
 
 ---
 
@@ -1627,9 +1627,9 @@ Status → Targets
 
 Ensure all scrape targets are healthy.
 
-<img src="step10_prometheus_ui.png">
+<img src="Images/step10_prometheus_ui.png">
 
-<img src="step10_prometheus_targets.png">
+<img src="Images/step10_prometheus_targets.png">
 
 ---
 
@@ -1655,7 +1655,7 @@ admin
 prom-operator
 ```
 
-<img src="step10_grafana_ui.png">
+<img src="Images/step10_grafana_ui.png">
 
 ---
 
@@ -1687,7 +1687,7 @@ Save & Test
 
 A successful configuration displays a green confirmation message.
 
-<img src="step10_grafana_datasource.png">
+<img src="Images/step10_grafana_datasource.png">
 
 ---
 
@@ -1709,23 +1709,23 @@ Click **Load**.
 
 Select the Prometheus data source.
 
-<img src="step10_prometheus_datasource.png">
+<img src="Images/step10_prometheus_datasource.png">
 
-<img src="step10_prometheus_datasource_url.png">
+<img src="Images/step10_prometheus_datasource_url.png">
 
-<img src="step10_prometheus_datasource_save.png">
+<img src="Images/step10_prometheus_datasource_save.png">
 
-<img src="step10_grafana_dashboard.png">
+<img src="Images/step10_grafana_dashboard.png">
 
-<img src="step10_grafana_k8s_components.png">
+<img src="Images/step10_grafana_k8s_components.png">
 
 Click **Import**.
 
-<img src="step10_grafana_import_dashboard.png">
+<img src="Images/step10_grafana_import_dashboard.png">
 
-<img src="step10_import_grafana_k8s_dashboard.png">
+<img src="Images/step10_import_grafana_k8s_dashboard.png">
 
-<img src="step10_select_datasource_prometheus.png">
+<img src="Images/step10_select_datasource_prometheus.png">
 
 ---
 
@@ -1744,7 +1744,7 @@ After importing the dashboard, Grafana will begin displaying Kubernetes metrics 
 
 Feel free to explore the available dashboards and customize them according to your monitoring requirements.
 
-<img src="step10_grafana_k8s_dashboard.png">
+<img src="Images/step10_grafana_k8s_dashboard.png">
 
 ---
 
@@ -1773,7 +1773,7 @@ Navigate to:
 Settings → Repositories
 ```
 
-<img src="step11_argocd_settings_repo.png">
+<img src="Images/step11_argocd_settings_repo.png">
 
 Click:
 
@@ -1781,7 +1781,7 @@ Click:
 CONNECT REPO USING HTTPS
 ```
 
-<img src="step11_argocd_connect_repo.png">
+<img src="Images/step11_argocd_connect_repo.png">
 
 Provide the following information:
 
@@ -1791,11 +1791,11 @@ Provide the following information:
 
 Click **CONNECT**.
 
-<img src="step11_argocd_configure_url.png">
+<img src="Images/step11_argocd_configure_url.png">
 
 If the connection is successful, the repository status will display **Successful**.
 
-<img src="step11_argocd_connection_successful.png">
+<img src="Images/step11_argocd_connection_successful.png">
 
 ---
 
@@ -1809,7 +1809,7 @@ Click:
 CREATE APPLICATION
 ```
 
-<img src="step11_argocd_create_db_app.png">
+<img src="Images/step11_argocd_create_db_app.png">
 
 Configure the application as shown in the reference screenshots.
 
@@ -1821,7 +1821,7 @@ Provide:
 - Destination Cluster
 - Namespace
 
-<img src="step11_argocd_db_details.png">
+<img src="Images/step11_argocd_db_details.png">
 
 Under **Source**, select the GitHub repository you connected earlier.
 
@@ -1835,7 +1835,7 @@ Kubernetes-Manifests-file/Database
 
 Click **CREATE**.
 
-<img src="step11_argocd_db_create.png">
+<img src="Images/step11_argocd_db_create.png">
 
 The database application will begin synchronizing.
 
@@ -1849,7 +1849,7 @@ Repeat the previous steps to create the backend application.
 
 Configure all fields as shown in the reference screenshots.
 
-<img src="step11_argocd_backend_details.png">
+<img src="Images/step11_argocd_backend_details.png">
 
 Select the same GitHub repository.
 
@@ -1863,7 +1863,7 @@ Kubernetes-Manifests-file/Backend
 
 Click **CREATE**.
 
-<img src="step11_argocd_backend_create.png">
+<img src="Images/step11_argocd_backend_create.png">
 
 ---
 
@@ -1875,7 +1875,7 @@ Create another application for the frontend.
 
 Configure the application using the same process.
 
-<img src="step11_argocd_frontend_details.png">
+<img src="Images/step11_argocd_frontend_details.png">
 
 Select the connected repository.
 
@@ -1889,7 +1889,7 @@ Kubernetes-Manifests-file/Frontend
 
 Click **CREATE**.
 
-<img src="step11_argocd_frontend_create.png">
+<img src="Images/step11_argocd_frontend_create.png">
 
 ---
 
@@ -1901,7 +1901,7 @@ Finally, create the Ingress application.
 
 Configure the application according to the screenshots.
 
-<img src="step11_argocd_ingress_details.png">
+<img src="Images/step11_argocd_ingress_details.png">
 
 Select the same GitHub repository.
 
@@ -1915,7 +1915,7 @@ Kubernetes-Manifests-file/Ingress
 
 Click **CREATE**.
 
-<img src="step11_argocd_ingress_create.png">
+<img src="Images/step11_argocd_ingress_create.png">
 
 ---
 
@@ -1931,7 +1931,7 @@ AWS Console → EC2 → Load Balancers
 
 Look for the automatically created Kubernetes ALB.
 
-<img src="step11_lb_console.png">
+<img src="Images/step11_lb_console.png">
 
 ---
 
@@ -1953,7 +1953,7 @@ Example:
 
 > **Note:** The original project used Porkbun as the domain registrar. If you are using another provider (such as GoDaddy or Route 53), create the equivalent DNS record.
 
-<img src="step11_dns.png">
+<img src="Images/step11_dns.png">
 
 Allow a few minutes for DNS propagation.
 
@@ -1968,7 +1968,7 @@ After synchronization completes, all four ArgoCD applications should display a *
 - Frontend
 - Ingress
 
-<img src="step11_argocd_dashboard.png">
+<img src="Images/step11_argocd_dashboard.png">
 
 ---
 
@@ -1978,7 +1978,7 @@ After DNS propagation, open your configured domain or subdomain in your browser.
 
 Your Three-Tier Todo application should now be accessible.
 
-<img src="step11_webapp_homepage.png">
+<img src="Images/step11_webapp_homepage.png">
 
 You can now interact with the application by:
 
@@ -1986,9 +1986,9 @@ You can now interact with the application by:
 - Updating existing records
 - Deleting records
 
-<img src="step11_webapp_add.png">
+<img src="Images/step11_webapp_add.png">
 
-<img src="step11_webapp_delete.png">
+<img src="Images/step11_webapp_delete.png">
 
 ---
 
@@ -2015,9 +2015,9 @@ Grafana will display metrics for:
 - Namespaces
 - Kubernetes Resources
 
-<img src="step11_grafana_dashboard.png">
+<img src="Images/step11_grafana_dashboard.png">
 
-<img src="step11_grafana_argocd_ns.png">
+<img src="Images/step11_grafana_argocd_ns.png">
 
 ---
 
@@ -2027,25 +2027,25 @@ You can inspect each deployed component individually.
 
 ### Ingress
 
-<img src="step11_argocd_ingress_app_dashboard.png">
+<img src="Images/step11_argocd_ingress_app_dashboard.png">
 
 ---
 
 ### Frontend
 
-<img src="step11_argocd_frontend_dashboard.png">
+<img src="Images/step11_argocd_frontend_dashboard.png">
 
 ---
 
 ### Backend
 
-<img src="step11_argocd_backend_dashboard.png">
+<img src="Images/step11_argocd_backend_dashboard.png">
 
 ---
 
 ### Database
 
-<img src="step11_argocd_db_dashboard.png">
+<img src="Images/step11_argocd_db_dashboard.png">
 
 ---
 
@@ -2063,7 +2063,7 @@ Delete the database pods.
 kubectl delete pod -n three-tier -l app=mysql
 ```
 
-<img src="step11_argocd_delete_db_pods.png">
+<img src="Images/step11_argocd_delete_db_pods.png">
 
 Kubernetes will automatically recreate new database pods.
 
@@ -2071,10 +2071,10 @@ Kubernetes will automatically recreate new database pods.
 kubectl get pods -n three-tier
 ```
 
-<img src="step11_argocd_db_pods_selfheal.png">
+<img src="Images/step11_argocd_db_pods_selfheal.png">
 
 Since the database is using persistent storage, all previously stored application data remains intact even after the pods are recreated.
 
-<img src="step11_argocd_webapp_data_persistent.png">
+<img src="Images/step11_argocd_webapp_data_persistent.png">
 
 ---

@@ -1748,3 +1748,329 @@ Feel free to explore the available dashboards and customize them according to yo
 
 ---
 
+# Step 11: Deploy the Three-Tier Application Using ArgoCD
+
+In this step, we will configure our private GitHub repository in ArgoCD and deploy each component of the application using the GitOps approach.
+
+The application consists of four independent ArgoCD applications:
+
+- Database
+- Backend
+- Frontend
+- Ingress
+
+Once all applications are synchronized successfully, the AWS Application Load Balancer (ALB) will expose the application to the internet.
+
+---
+
+## 11.1 Connect Your Private GitHub Repository
+
+Since the Kubernetes manifests are stored in a **private GitHub repository**, ArgoCD must be granted access before it can deploy the application.
+
+Navigate to:
+
+```
+Settings → Repositories
+```
+
+<img src="step11_argocd_settings_repo.png">
+
+Click:
+
+```
+CONNECT REPO USING HTTPS
+```
+
+<img src="step11_argocd_connect_repo.png">
+
+Provide the following information:
+
+- Repository URL
+- GitHub Username
+- GitHub Personal Access Token (PAT)
+
+Click **CONNECT**.
+
+<img src="step11_argocd_configure_url.png">
+
+If the connection is successful, the repository status will display **Successful**.
+
+<img src="step11_argocd_connection_successful.png">
+
+---
+
+# Deploy the Database
+
+## 11.2 Create the Database Application
+
+Click:
+
+```
+CREATE APPLICATION
+```
+
+<img src="step11_argocd_create_db_app.png">
+
+Configure the application as shown in the reference screenshots.
+
+Provide:
+
+- Application Name
+- Project
+- Sync Policy
+- Destination Cluster
+- Namespace
+
+> 📷 **Screenshot:** Database Application Configuration
+
+Under **Source**, select the GitHub repository you connected earlier.
+
+Specify the directory containing the database manifests.
+
+For example:
+
+```
+Kubernetes-Manifests-file/Database
+```
+
+Click **CREATE**.
+
+> 📷 **Screenshot:** Database Source Path
+
+The database application will begin synchronizing.
+
+---
+
+# Deploy the Backend
+
+## 11.3 Create the Backend Application
+
+Repeat the previous steps to create the backend application.
+
+Configure all fields as shown in the reference screenshots.
+
+> 📷 **Screenshot:** Backend Application Configuration
+
+Select the same GitHub repository.
+
+Specify the backend manifest directory.
+
+Example:
+
+```
+Kubernetes-Manifests-file/Backend
+```
+
+Click **CREATE**.
+
+> 📷 **Screenshot:** Backend Source Path
+
+---
+
+# Deploy the Frontend
+
+## 11.4 Create the Frontend Application
+
+Create another application for the frontend.
+
+Configure the application using the same process.
+
+> 📷 **Screenshot:** Frontend Application Configuration
+
+Select the connected repository.
+
+Specify the frontend manifest directory.
+
+Example:
+
+```
+Kubernetes-Manifests-file/Frontend
+```
+
+Click **CREATE**.
+
+> 📷 **Screenshot:** Frontend Source Path
+
+---
+
+# Deploy the Ingress
+
+## 11.5 Create the Ingress Application
+
+Finally, create the Ingress application.
+
+Configure the application according to the screenshots.
+
+> 📷 **Screenshot:** Ingress Application Configuration
+
+Select the same GitHub repository.
+
+Specify the ingress manifest directory.
+
+Example:
+
+```
+Kubernetes-Manifests-file/Ingress
+```
+
+Click **CREATE**.
+
+> 📷 **Screenshot:** Ingress Source Path
+
+---
+
+## 11.6 Verify AWS Application Load Balancer
+
+Once the Ingress application is synchronized successfully, the AWS Load Balancer Controller automatically provisions an **Application Load Balancer (ALB)**.
+
+You can verify it by navigating to:
+
+```
+AWS Console → EC2 → Load Balancers
+```
+
+Look for the automatically created Kubernetes ALB.
+
+> 📷 **Screenshot:** AWS Application Load Balancer
+
+---
+
+# Configure Your Domain
+
+## 11.7 Create a DNS Record
+
+Copy the DNS name of the newly created Application Load Balancer.
+
+Open your domain provider's DNS management page.
+
+Create a DNS record that points your domain or subdomain to the ALB.
+
+Example:
+
+| Record Type | Host | Target |
+|-------------|------|--------|
+| CNAME | `backend` | `<ALB-DNS>` |
+
+> **Note:** The original project used Porkbun as the domain registrar. If you are using another provider (such as GoDaddy or Route 53), create the equivalent DNS record.
+
+> 📷 **Screenshot:** DNS Configuration
+
+Allow a few minutes for DNS propagation.
+
+---
+
+## 11.8 Verify Application Deployment
+
+After synchronization completes, all four ArgoCD applications should display a **Healthy** and **Synced** status.
+
+- Database
+- Backend
+- Frontend
+- Ingress
+
+> 📷 **Screenshot:** ArgoCD Applications
+
+---
+
+## 11.9 Access the Application
+
+After DNS propagation, open your configured domain or subdomain in your browser.
+
+Your Three-Tier Todo application should now be accessible.
+
+> 📷 **Screenshot:** Three-Tier Application
+
+You can now interact with the application by:
+
+- Creating new records
+- Updating existing records
+- Deleting records
+
+> 📷 **Screenshot:** Application with Added Records
+
+> 📷 **Screenshot:** Application After Deleting Records
+
+---
+
+# Monitor the Deployment
+
+## 11.10 View Kubernetes Metrics in Grafana
+
+Open your Grafana dashboard.
+
+Select the namespace used by the application.
+
+For example:
+
+```
+three-tier
+```
+
+Grafana will display metrics for:
+
+- Pods
+- Deployments
+- CPU Usage
+- Memory Usage
+- Namespaces
+- Kubernetes Resources
+
+> 📷 **Screenshot:** Grafana Namespace Dashboard
+
+---
+
+## 11.11 Verify ArgoCD Applications
+
+You can inspect each deployed component individually.
+
+### Ingress
+
+> 📷 **Screenshot:** Ingress Application
+
+---
+
+### Frontend
+
+> 📷 **Screenshot:** Frontend Application
+
+---
+
+### Backend
+
+> 📷 **Screenshot:** Backend Application
+
+---
+
+### Database
+
+> 📷 **Screenshot:** Database Application
+
+---
+
+# Validate Persistent Storage
+
+## 11.12 Verify Persistent Volume Claims
+
+The database deployment uses **Persistent Volumes (PV)** and **Persistent Volume Claims (PVC)** to ensure that application data survives pod restarts.
+
+To verify this:
+
+Delete the database pods.
+
+```bash
+kubectl delete pod -n three-tier -l app=mysql
+```
+
+> 📷 **Screenshot:** Delete Database Pods
+
+Kubernetes will automatically recreate new database pods.
+
+```bash
+kubectl get pods -n three-tier
+```
+
+> 📷 **Screenshot:** Newly Created Database Pods
+
+Since the database is using persistent storage, all previously stored application data remains intact even after the pods are recreated.
+
+> 📷 **Screenshot:** Application Data Successfully Preserved

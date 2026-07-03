@@ -1821,7 +1821,7 @@ Provide:
 - Destination Cluster
 - Namespace
 
-> 📷 **Screenshot:** Database Application Configuration
+<img src="step11_argocd_db_details.png">
 
 Under **Source**, select the GitHub repository you connected earlier.
 
@@ -1835,7 +1835,7 @@ Kubernetes-Manifests-file/Database
 
 Click **CREATE**.
 
-> 📷 **Screenshot:** Database Source Path
+<img src="step11_argocd_db_create.png">
 
 The database application will begin synchronizing.
 
@@ -1849,7 +1849,7 @@ Repeat the previous steps to create the backend application.
 
 Configure all fields as shown in the reference screenshots.
 
-> 📷 **Screenshot:** Backend Application Configuration
+<img src="step11_argocd_backend_details.png">
 
 Select the same GitHub repository.
 
@@ -1863,7 +1863,7 @@ Kubernetes-Manifests-file/Backend
 
 Click **CREATE**.
 
-> 📷 **Screenshot:** Backend Source Path
+<img src="step11_argocd_backend_create.png">
 
 ---
 
@@ -1875,7 +1875,7 @@ Create another application for the frontend.
 
 Configure the application using the same process.
 
-> 📷 **Screenshot:** Frontend Application Configuration
+<img src="step11_argocd_frontend_details.png">
 
 Select the connected repository.
 
@@ -1889,7 +1889,7 @@ Kubernetes-Manifests-file/Frontend
 
 Click **CREATE**.
 
-> 📷 **Screenshot:** Frontend Source Path
+<img src="step11_argocd_frontend_create.png">
 
 ---
 
@@ -1901,7 +1901,7 @@ Finally, create the Ingress application.
 
 Configure the application according to the screenshots.
 
-> 📷 **Screenshot:** Ingress Application Configuration
+<img src="step11_argocd_ingress_details.png">
 
 Select the same GitHub repository.
 
@@ -1915,7 +1915,7 @@ Kubernetes-Manifests-file/Ingress
 
 Click **CREATE**.
 
-> 📷 **Screenshot:** Ingress Source Path
+<img src="step11_argocd_ingress_create.png">
 
 ---
 
@@ -1931,7 +1931,7 @@ AWS Console → EC2 → Load Balancers
 
 Look for the automatically created Kubernetes ALB.
 
-> 📷 **Screenshot:** AWS Application Load Balancer
+<img src="step11_lb_console.png">
 
 ---
 
@@ -1953,7 +1953,7 @@ Example:
 
 > **Note:** The original project used Porkbun as the domain registrar. If you are using another provider (such as GoDaddy or Route 53), create the equivalent DNS record.
 
-> 📷 **Screenshot:** DNS Configuration
+<img src="step11_dns.png">
 
 Allow a few minutes for DNS propagation.
 
@@ -1968,7 +1968,7 @@ After synchronization completes, all four ArgoCD applications should display a *
 - Frontend
 - Ingress
 
-> 📷 **Screenshot:** ArgoCD Applications
+<img src="step11_argocd_dashboard.png">
 
 ---
 
@@ -1978,7 +1978,7 @@ After DNS propagation, open your configured domain or subdomain in your browser.
 
 Your Three-Tier Todo application should now be accessible.
 
-> 📷 **Screenshot:** Three-Tier Application
+<img src="step11_webapp_homepage.png">
 
 You can now interact with the application by:
 
@@ -1986,9 +1986,9 @@ You can now interact with the application by:
 - Updating existing records
 - Deleting records
 
-> 📷 **Screenshot:** Application with Added Records
+<img src="step11_webapp_add.png">
 
-> 📷 **Screenshot:** Application After Deleting Records
+<img src="step11_webapp_delete.png">
 
 ---
 
@@ -2015,7 +2015,9 @@ Grafana will display metrics for:
 - Namespaces
 - Kubernetes Resources
 
-> 📷 **Screenshot:** Grafana Namespace Dashboard
+<img src="step11_grafana_dashboard.png">
+
+<img src="step11_grafana_argocd_ns.png">
 
 ---
 
@@ -2025,25 +2027,25 @@ You can inspect each deployed component individually.
 
 ### Ingress
 
-> 📷 **Screenshot:** Ingress Application
+<img src="step11_argocd_ingress_app_dashboard.png">
 
 ---
 
 ### Frontend
 
-> 📷 **Screenshot:** Frontend Application
+<img src="step11_argocd_frontend_dashboard.png">
 
 ---
 
 ### Backend
 
-> 📷 **Screenshot:** Backend Application
+<img src="step11_argocd_backend_dashboard.png">
 
 ---
 
 ### Database
 
-> 📷 **Screenshot:** Database Application
+<img src="step11_argocd_db_dashboard.png">
 
 ---
 
@@ -2061,7 +2063,7 @@ Delete the database pods.
 kubectl delete pod -n three-tier -l app=mysql
 ```
 
-> 📷 **Screenshot:** Delete Database Pods
+<img src="step11_argocd_delete_db_pods.png">
 
 Kubernetes will automatically recreate new database pods.
 
@@ -2069,8 +2071,10 @@ Kubernetes will automatically recreate new database pods.
 kubectl get pods -n three-tier
 ```
 
-> 📷 **Screenshot:** Newly Created Database Pods
+<img src="step11_argocd_db_pods_selfheal.png">
 
 Since the database is using persistent storage, all previously stored application data remains intact even after the pods are recreated.
 
-> 📷 **Screenshot:** Application Data Successfully Preserved
+<img src="step11_argocd_webapp_data_persistent.png">
+
+---
